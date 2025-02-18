@@ -1,5 +1,11 @@
 
-# 1.Setup Pydantic model 
+#Step1.Setup Pydantic model 
+#Step2: Setup AI Agent from FrontEnd Request
+#Step3: Run app & Explore Swagger UI Docs
+
+
+
+#Step1.Setup Pydantic model 
 from pydantic import BaseModel
 from typing import List
 class RequestState(BaseModel):
@@ -8,7 +14,7 @@ class RequestState(BaseModel):
     system_prompt:str
     message:List[str]
     allow_search:bool
-# 2.Setup AI Agent from FrontEnd Request
+    
 #Step2: Setup AI Agent from FrontEnd Request
 from fastapi import FastAPI
 from ai_agent import get_response_from_ai_agent
