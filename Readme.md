@@ -37,4 +37,27 @@ Before you start, ensure you have the following dependencies installed:
     TAVILY_API_KEY=your_tavily_api_key
 
 ```
+# How to Run
+## Step 1: Set up your API keys
+In the .env file, make sure you set the following environment variables with your respective API keys:
+```bash
+    GROQ_API_KEY=your_groq_api_key
+    TAVILY_API_KEY=your_tavily_api_key
+
+```
+## Step 2: Start the Backend API
+The backend uses FastAPI to handle requests. Run the following command to start the API:
+```bash
+    uvicorn backend:app --reload
+```
+## Step 3: Start the Frontend Interface
+To start the Streamlit interface, run:
+```bash
+    poetry run streamlit run frontend.py
+```
+## Step 4: Use the Web Interface
+- Visit http://localhost:8501 in your web browser.
+- Select your model provider (Groq or OpenAI), choose a model, and input a system prompt.
+- Enter a query and click "Ask Agent!" to get a response from your AI agent.
+
 
