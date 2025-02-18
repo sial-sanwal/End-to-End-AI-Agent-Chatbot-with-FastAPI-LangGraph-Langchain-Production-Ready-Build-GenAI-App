@@ -65,4 +65,4 @@ def get_response_from_ai_agent(llm_id, query, allow_search, system_prompt, provi
     ai_messages=[message.content for message in messages if isinstance(message, AIMessage)]
     return ai_messages[-1]
 
-print(get_response_from_ai_agent("llama-3.3-70b-versatile","who is sial-sanwal on facebook tell me his recent activity",True,"you are facebook person analysis","Groq"))
+#print(get_response_from_ai_agent("llama-3.3-70b-versatile","who is sial-sanwal on facebook tell me his recent activity",True,"you are facebook person analysis","Groq"))
