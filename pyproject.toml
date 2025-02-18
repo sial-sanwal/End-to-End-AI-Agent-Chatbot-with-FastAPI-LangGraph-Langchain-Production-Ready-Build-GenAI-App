@@ -6,9 +6,12 @@ authors = [
     {name = "sial-sanwal",email = "sialsanwal885@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<4.0" 
 dependencies = [
-    "python-dotenv (>=1.0.1,<2.0.0)"
+    "python-dotenv (>=1.0.1,<2.0.0)",
+    "langchain-groq (>=0.2.4,<0.3.0)",
+    "langchain-community (>=0.3.17,<0.4.0)",
+    "langgraph (>=0.2.73,<0.3.0)"
 ]
 
 
