@@ -60,4 +60,9 @@ To start the Streamlit interface, run:
 - Select your model provider (Groq or OpenAI), choose a model, and input a system prompt.
 - Enter a query and click "Ask Agent!" to get a response from your AI agent.
 
+## Step 5: Interact with AI Agents
+- Groq Models: Choose from available Groq models like llama-3.3-70b-versatile or mixtral-8x7b-32768.
+- OpenAI Models: You can select OpenAI models like gpt-4o-mini.
+- Web Search: Enable web search functionality to allow the agent to query online information using Tavily.
+
 
