@@ -17,6 +17,8 @@ if TAVILY_API_KEY:
     print("TAVILY_API_KEY API Key loaded successfully")
 else:
     print("Error: TAVILY_API_KEY not found")
+    
+
 # Step 2: Setup LLM & Tools 
 from langchain_groq import ChatGroq
 from langchain_community.tools.tavily_search import TavilySearchResults
@@ -25,19 +27,42 @@ groq_llm=ChatGroq(model="llama-3.3-70b-versatile")
 serach_tool=TavilySearchResults(max_results=2)
 
 
+
+
+
 # Step 3: Setup AI Agents with Search Tools and functionality 
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages.ai import AIMessage
-system_prompt="Act as an AI chatbot who is smart and Friendly"
-agent=create_react_agent(
-    model=groq_llm,
-    tools=[serach_tool],
-    state_modifier=system_prompt
-)
+# system_prompt="Act as an AI chatbot who is smart and Friendly"
+# agent=create_react_agent(
+#     model=groq_llm,
+#     tools=[serach_tool],
+#     state_modifier=system_prompt
+# )
  
-query="tell me about the today date  in pakistan"
-state={"messages":query}
-responce=agent.invoke(state)
-messages=responce.get("messages")
-ai_messages=[message.content for message in messages if isinstance (message,AIMessage)]
-print(ai_messages[-1])
+# query="tell me about the today date  in pakistan"
+# state={"messages":query}
+# responce=agent.invoke(state)
+# messages=responce.get("messages")
+# ai_messages=[message.content for message in messages if isinstance (message,AIMessage)]
+# print(ai_messages[-1])
+
+def get_response_from_ai_agent(llm_id, query, allow_search, system_prompt, provider):
+    if provider=="Groq":
+        llm=ChatGroq(model=llm_id)
+    elif provider=="OpenAI":
+        llm=ChatGroq(model=llm_id)
+
+    tools=[TavilySearchResults(max_results=2)] if allow_search else []
+    agent=create_react_agent(
+        model=llm,
+        tools=tools,
+        state_modifier=system_prompt
+    )
+    state={"messages": query}
+    response=agent.invoke(state)
+    messages=response.get("messages")
+    ai_messages=[message.content for message in messages if isinstance(message, AIMessage)]
+    return ai_messages[-1]
+
+print(get_response_from_ai_agent("llama-3.3-70b-versatile","who is sial-sanwal on facebook tell me his recent activity",True,"you are facebook person analysis","Groq"))
