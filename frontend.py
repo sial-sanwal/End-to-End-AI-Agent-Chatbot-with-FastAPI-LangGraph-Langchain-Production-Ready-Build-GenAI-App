@@ -1,21 +1,24 @@
-# if you dont use pipenv uncomment the following:
-# from dotenv import load_dotenv
-# load_dotenv()
-
-
 #Step1: Setup UI with streamlit (model provider, model, system prompt, web_search, query)
 import streamlit as st
+import requests
 
 st.set_page_config(page_title="LangGraph Agent UI", layout="centered")
-st.title("AI Chatbot Agents")
-st.write("Create and Interact with the AI Agents!")
+st.title("AI Chatbot Agents by Sanwal Khan")
+st.write("Interact with AI Agents Powered by Real-Time Web Search for Accurate and Up-to-Date Information!")
+
+
 
 system_prompt=st.text_area("Define your AI Agent: ", height=70, placeholder="Type your system prompt here...")
 
 MODEL_NAMES_GROQ = ["llama-3.3-70b-versatile", "mixtral-8x7b-32768"]
 MODEL_NAMES_OPENAI = ["gpt-4o-mini"]
 
-provider=st.radio("Select Provider:", ("Groq", "OpenAI"))
+# provider=st.radio("Select Provider:", ("Groq", "OpenAI"))
+
+col1, col2 = st.columns([1, 3])  # Adjust the ratios as needed
+
+with col1:
+    provider = st.radio("Select Provider:", ("Groq", "OpenAI"), horizontal=True)
 
 if provider == "Groq":
     selected_model = st.selectbox("Select Groq Model:", MODEL_NAMES_GROQ)
@@ -31,8 +34,6 @@ API_URL="http://127.0.0.1:5000/chat"
 if st.button("Ask Agent!"):
     if user_query.strip():
         #Step2: Connect with backend via URL
-        import requests
-
         payload={
             "model_name": selected_model,
             "model_provider": provider,
